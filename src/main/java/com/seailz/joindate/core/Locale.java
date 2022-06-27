@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +19,21 @@ import java.util.List;
     @Getter
     public enum Locale {
 
-        ERROR_INVALID_PLAYER("error.invalidplayer", Collections.singletonList("&c&lERROR&f That player is invalid!"));
+        JOIN_DATE("JOIN_DATE", Collections.singletonList(
+                "&bYour first join date was &3%date%&b!"
+        )),
+
+        JOIN_DATE_OTHER("JOIN_DATE_OTHER", Collections.singletonList(
+                "&b%player%'s first join date was &3%date%&b!"
+        )),
+
+        LAST_JOIN("LAST_JOIN", Collections.singletonList(
+                "&%player%'s last join was &3%date%&b!"
+        )),
+
+        PROFILE_NOT_EXIST("PROFILE_NOT_EXSIT", Collections.singletonList(
+                "&bCouldn't load that profile! They may not have played before."
+        ));
 
         private final String id;
         private final List<String> defaultMessage;

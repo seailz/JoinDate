@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 /**
@@ -81,6 +82,29 @@ public class StorageUtils {
                 return db.rowExists("joindate-profiles", "uuid", profile.getUuid().toString());
         }
         return false;
+    }
+
+    /**
+     * Loads a profile
+     * @param uuid The UUID of the profile to load
+     * @return The profile if it exists, null if not
+     * @throws SQLException If there is an error with the database
+     * @throws InvocationTargetException If there is an error with the class
+     * @throws InstantiationException If there is an error with the class
+     * @throws IllegalAccessException If there is an error with the class
+     */
+    public static Profile retrieveProfile(String uuid) throws SQLException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        switch (JoinDate.getInstance().getStorageType()) {
+            case YAML:
+                FileConfiguration config = JoinDate.getInstance().getDataConfig();
+                return new Profile(uuid, config.getLong("profiles." + uuid + ".firstJoin"), config.getLong("profiles." + uuid + ".lastJoin"));
+            case MYSQL:
+                Database db = JoinDate.getInstance().getDatabase();
+                db.connect();
+
+                return (Profile) db.get("joindate-profiles", "uuid", uuid, Profile.class);
+        }
+        return null;
     }
 
 }
