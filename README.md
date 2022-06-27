@@ -1,2 +1,2 @@
-# template
-Premium plugin template for Ice Games, made in Maven
+# Join Date
+A custom join date plugin for spigot
