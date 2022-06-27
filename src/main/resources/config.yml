@@ -1,0 +1,10 @@
+# You may pick between local and mysql
+storage-type: local
+
+# Only to be used if storage-type is mysql
+mysql:
+    host: localhost
+    port: 3306
+    user: root
+    password: root
+    database: test

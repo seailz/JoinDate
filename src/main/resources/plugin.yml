@@ -1,7 +1,7 @@
-name: SpigotPluginTemplate
+name: JoinDate
 version: ${project.version}
-main: com.seailz.spigotplugintemplate.SpigotPluginTemplate
+main: com.seailz.joindate.JoinDate
 api-version: 1.18
 authors: [ Seailz ]
-description: Plugin Tempalte (Change this!)
-website: www.seailzcom
+description: Retrieve the first and last time a player joined the server
+website: www.seailz.com
